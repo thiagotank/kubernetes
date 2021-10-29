@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: green-deploy
+  namespace: qa
+spec:
+  selector:
+    matchLabels:
+      app: green
+  template:
+    metadata:
+      labels:
+        app: green
+    spec:
+      containers:
+      - name: nginx-green
+        image: fabricioveronez/greenhome
+        ports:
+        - containerPort: 8080
+

@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: subdiretorio
+  namespace: qa
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: "nginx2"
+spec:
+  rules:
+  - host: veronez.dev.juntossomosmaisi.com.br
+    http:
+      paths:
+      - path: /blue
+        backend:
+          serviceName: blue-service
+          servicePort: 80       
+      - path: /green
+        backend:
+          serviceName: green-service
+          servicePort: 80             

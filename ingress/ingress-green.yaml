@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: color-app-ingress
+  namespace: qa
+  labels:
+    app: color-app
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: "nginx2"
+spec:
+  rules:
+  - host: green.dev.juntossomosmaisi.com.br
+    http:
+      paths:
+      - path: /green
+        backend:
+          serviceName: green-service
+          servicePort: 80               
